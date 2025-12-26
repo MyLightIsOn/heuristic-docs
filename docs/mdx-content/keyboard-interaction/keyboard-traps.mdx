@@ -1,0 +1,41 @@
+---
+title: Are we avoiding keyboard traps?
+keywords: ["keyboard navigation", "keyboard trap", "accessibility"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+When someone navigates an interface using a keyboard, they must be able to move the focus through the entire page or into and out of every interactive component. A keyboard trap occurs when focus enters an element or region but cannot leave it using standard keyboard commands.
+
+Users should be able to navigate freely using keys such as Tab, Shift + Tab, and Escape when appropriate. No component should capture focus in a way that prevents continued navigation.
+
+Keyboard traps often occur in custom widgets, modals, menus, embedded content, or complex controls that are not implemented correctly.
+
+## Why this matters
+
+Keyboard users rely on predictable keyboard navigation to move through an interface. If focus becomes trapped, the user may be unable to reach other content or complete their task without reloading the page or switching input methods.
+
+For screen reader users, a keyboard trap can completely block access to the rest of the interface. This creates a critical usability failure and can make the product unusable.
+
+Avoiding keyboard traps is essential for maintaining basic operability and user control.
+
+## What to check for
+
+- Can focus move away from every interactive element using the keyboard alone?
+- Can users exit modals, dialogs, menus, and overlays using standard keyboard interactions such as Tab, Shift + Tab, or Escape?
+- When focus enters a complex component, is there a clear and reliable way to move focus out again?
+- Do embedded widgets, iframes, or third party components allow keyboard users to exit them?
+
+## What to avoid
+
+- Components that trap focus without providing a keyboard method to exit.
+- Custom controls that override native keyboard behavior without recreating it correctly.
+- Requiring mouse interaction to escape a component.
+
+## Related standards
+
+- WCAG 2.1 Success Criterion 2.1.2 No Keyboard Trap
+- WCAG 2.1 Success Criterion 2.1.1 Keyboard
+- EN 301 549 clause 9.2.1.1 Keyboard
+- EN 301 549 clause 9.2.1.2 No Keyboard Trap

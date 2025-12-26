@@ -1,0 +1,40 @@
+---
+title: Are buttons, links, and other CTAs designed and implemented to consider both hover and focus states?
+keywords: ["hover", "focus", "keyboard focus", "CTA", "interactive elements"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Interactive elements such as buttons, links, and calls to action must provide clear visual feedback for both mouse hover and keyboard focus states. Hover states support mouse and pointer users, while focus states support keyboard and assistive technology users.
+
+Hover and focus are not the same interaction and should not be treated as interchangeable. Focus states must appear when an element receives keyboard focus, regardless of whether a mouse is present. Relying on hover styles alone is not sufficient.
+
+## Why this matters
+
+Keyboard users rely on focus styles to understand which element is currently active. If interactive elements only change appearance on hover, keyboard users may have no visual indication of where they are on the page.
+
+When hover and focus states are inconsistent or missing, users can become disoriented, make mistakes, or be unable to complete tasks. This disproportionately affects keyboard-only users, screen reader users who rely on visual focus cues, and users with low vision.
+
+Providing clear and equivalent hover and focus feedback ensures that all users receive the same interaction cues, regardless of input method.
+
+## What to check for
+
+- Do all interactive elements display a visible focus style when navigated to using the keyboard?
+- Are hover styles for buttons, links, and CTAs also applied, or thoughtfully adapted, to focus states?
+- Is the focus style clearly visible and distinct from the default state, not just a subtle color change?
+- Does focus remain visible even when hover styles are present or when the mouse moves away?
+
+## What to avoid
+
+- Designing interaction feedback that appears only on hover and not on focus.
+- Removing native focus styles without providing a clear and accessible replacement.
+- Using focus styles that are too subtle to notice or that rely solely on color changes with low contrast.
+- Treating hover and focus as the same state in design or code without verifying keyboard behavior.
+
+## Related standards
+
+- WCAG 2.1 Success Criterion 2.4.7 Focus Visible
+- WCAG 2.1 Success Criterion 2.1.1 Keyboard
+- EN 301 549 clause 9.2.4.7 Focus Visible
+- EN 301 549 clause 9.2.1.1 Keyboard
