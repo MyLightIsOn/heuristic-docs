@@ -12,7 +12,7 @@ import { visit } from "unist-util-visit"
 
 import { Paths } from "@/lib/pageroutes"
 
-const docsDir = path.join(process.cwd(), "contents/docs")
+const docsDir = path.join(process.cwd(), "contents/heuristics")
 const outputDir = path.join(process.cwd(), "public", "search-data")
 
 interface MdxJsxFlowElement extends Node {
@@ -76,7 +76,6 @@ function removeCustomComponents() {
     "TabsList",
     "TabsTrigger",
     "pre",
-    "Mermaid",
     "Card",
     "CardGrid",
     "Step",
@@ -85,6 +84,9 @@ function removeCustomComponents() {
     "FileTree",
     "Folder",
     "File",
+    "OwnerBadge",
+    "KeywordTags",
+    "StandardsReference",
   ]
 
   return (tree: Node) => {

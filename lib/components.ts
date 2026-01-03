@@ -6,6 +6,9 @@ import { File, Folder } from "@/components/markdown/filetree/component"
 import RoutedLink from "@/components/markdown/link"
 import Note from "@/components/markdown/note"
 import { Step, StepItem } from "@/components/markdown/step"
+import { OwnerBadge } from "@/components/markdown/owner-badge"
+import { KeywordTags } from "@/components/markdown/keyword-tags"
+import { StandardsReference } from "@/components/markdown/standards-reference"
 
 export const components = {
   a: RoutedLink,
@@ -14,8 +17,11 @@ export const components = {
   FileTree,
   Folder,
   File,
+  KeywordTags,
   Note,
+  OwnerBadge,
   pre: Pre,
+  StandardsReference,
   Step,
   StepItem,
   Tabs,

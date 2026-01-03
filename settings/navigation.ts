@@ -2,16 +2,11 @@ import { PageRoutes } from "@/lib/pageroutes"
 
 export const Navigations = [
   {
-    title: "Docs",
+    title: "Heuristics",
     href: `/docs${PageRoutes[0].href}`,
-  },
-  {
-    title: "Rubix",
-    href: "https://rubixstudios.com.au",
-    external: true,
   },
 ]
 
 export const GitHubLink = {
-  href: "https://github.com/rubixvi/rubix-documents",
+  href: "https://github.com/yourusername/a11y-heuristics-guide",
 }

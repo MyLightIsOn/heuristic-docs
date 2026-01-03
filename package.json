@@ -70,11 +70,12 @@
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.1.18",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.50.0"
   },
   "engines": {
-    "node": "^22.x"
+    "node": "^25.x"
   },
   "packageManager": "pnpm@10.25.0"
 }
