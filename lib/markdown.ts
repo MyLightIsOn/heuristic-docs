@@ -6,7 +6,6 @@ import type { Element, Text } from "hast"
 import { compileMDX } from "next-mdx-remote/rsc"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeCodeTitles from "rehype-code-titles"
-import rehypeKatex from "rehype-katex"
 import rehypePrism from "rehype-prism-plus"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
@@ -38,7 +37,6 @@ async function parseMdx<Frontmatter>(rawMdx: string) {
         rehypePlugins: [
           preCopy,
           rehypeCodeTitles,
-          rehypeKatex,
           rehypePrism,
           rehypeSlug,
           rehypeAutolinkHeadings,

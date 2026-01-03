@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Accessibility Heuristics Guide
+
+A comprehensive collection of 37 accessibility heuristics for designers and developers, organized into 6 key categories.
+
+## Overview
+
+This guide provides practical accessibility heuristics based on WCAG guidelines and industry best practices. Each heuristic includes:
+
+- Clear explanations of what it means
+- Why it matters for users
+- What to check for during design/development
+- Common pitfalls to avoid
+- References to relevant WCAG and EN 301 549 standards
+
+## Categories
+
+- **Keyboard Interaction** (4 heuristics) - Navigate and interact using keyboard alone
+- **Meaningful Content** (7 heuristics) - Clear, understandable information for all users
+- **Page Structure** (6 heuristics) - Well-organized, semantic document structure
+- **Quality of Life** (7 heuristics) - Enhanced usability and user experience
+- **Readability** (6 heuristics) - Easy to read and comprehend content
+- **Screen Reader Support** (7 heuristics) - Optimized for assistive technologies
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Run the development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Built With
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Next.js](https://nextjs.org) - React framework
+- [Tailwind CSS](https://tailwindcss.com) - Styling
+- [MDX](https://mdxjs.com) - Content format
+- [Rubix Documents](https://github.com/rubixvi/rubix-documents) - Documentation template
 
-## Learn More
+## Content Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Heuristics are stored as MDX files in `docs/mdx-content/` organized by category.
