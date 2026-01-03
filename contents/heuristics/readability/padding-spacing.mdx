@@ -1,0 +1,37 @@
+---
+title: Can users adjust padding and line spacing without loss of content or functionality?
+keywords: ["text spacing", "readability", "custom styles"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Users must be able to adjust text spacing without content being hidden, overlapped, or made unusable. This includes line height, paragraph spacing, letter spacing, word spacing, and padding around text.
+
+Content and functionality must remain intact when users apply custom styles through browser settings, extensions, or user stylesheets.
+
+## Why this matters
+
+Users with low vision, dyslexia, or cognitive disabilities often adjust spacing to improve readability. If layouts break when spacing changes, content can become difficult or impossible to use.
+
+Screen reader and keyboard users may also be affected when spacing changes disrupt focus order, visibility, or interactive controls.
+
+## What to check for
+
+- Content remains readable when line height is increased.
+- Text does not overlap or clip when spacing is adjusted.
+- Interactive elements remain usable with increased padding.
+- Containers expand to accommodate increased spacing.
+- No content or functionality is lost when custom spacing is applied.
+
+## What to avoid
+
+- Fixed heights that clip text when spacing changes.
+- Absolute positioning that causes overlap.
+- Preventing users from applying custom styles.
+- Hiding overflow that conceals expanded content.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.4.12 Text Spacing
+- EN 301 549 clause 9.1.4.12 Text Spacing

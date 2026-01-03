@@ -1,0 +1,39 @@
+---
+title: Are the main page language and language changes correctly designated for assistive technologies?
+keywords: ["language", "language changes", "assistive technologies"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Each page must declare a primary language that applies to the overall content. Any changes in language within the page must also be identified programmatically.
+
+Language is designated using appropriate markup so assistive technologies can detect and interpret it correctly.
+
+## Why this matters
+
+Screen reader users rely on language information to apply correct pronunciation and speech rules. When language is not identified or is incorrect, content may be mispronounced or hard to understand.
+
+Language designation also supports translation tools and users with cognitive or learning disabilities. Clear language context improves comprehension and reduces confusion.
+
+## What to check for
+
+- The page has a single, correct primary language defined.
+- All language changes within the content are programmatically marked.
+- Language attributes accurately match the written language.
+- Mixed-language content is identified at the correct scope.
+- Assistive technologies announce language changes as expected.
+
+## What to avoid
+
+- Omitting the primary language of the page.
+- Using an incorrect or overly generic language code.
+- Failing to mark inline language changes.
+- Applying language attributes inconsistently or unnecessarily.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 3.1.1 Language of Page
+- WCAG 2.2 Success Criterion 3.1.2 Language of Parts
+- EN 301 549 clause 9.3.1.1 Language of Page
+- EN 301 549 clause 9.3.1.2 Language of Parts

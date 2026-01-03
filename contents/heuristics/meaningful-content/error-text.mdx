@@ -1,0 +1,39 @@
+---
+title: Are errors described in text?
+keywords: ["error messages", "text alternatives", "forms"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+When an error occurs, it must be communicated using text. Users should be able to understand what went wrong without relying on color, icons, sound, or visual position alone.
+
+Error text must be programmatically available so assistive technologies can announce it. The message should clearly identify the error and relate it to the affected input or action.
+
+## Why this matters
+
+Screen reader users cannot perceive visual cues such as red outlines or icons. Without text, errors may go unnoticed or be impossible to understand.
+
+Text-based error descriptions also support users with low vision, color vision deficiencies, or cognitive disabilities. Clear messages reduce frustration and help users recover efficiently.
+
+## What to check for
+
+- Errors are described using clear, readable text.
+- Error messages identify the specific problem.
+- The error text is associated with the relevant field or action.
+- Assistive technologies announce error messages when they appear.
+- Errors are not conveyed by color or icons alone.
+
+## What to avoid
+
+- Indicating errors only with color, symbols, or sound.
+- Displaying generic messages that do not explain the issue.
+- Showing error states without any accompanying text.
+- Placing error text where it is not programmatically related to the error.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 3.3.1 Error Identification
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- EN 301 549 clause 9.3.3.1 Error Identification
+- EN 301 549 clause 9.1.3.1 Info and Relationships

@@ -1,0 +1,37 @@
+---
+title: Are dynamically updated status messages announced without receiving visual focus?
+keywords: ["status messages", "live regions", "dynamic updates"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Status messages that update dynamically must be announced to assistive technologies without moving visual focus. Users should receive important feedback without their current task being interrupted.
+
+Status messages include confirmations, errors, progress updates, and other changes that are not the result of direct focus movement.
+
+## Why this matters
+
+Screen reader users may not be aware of dynamic changes if they are not announced programmatically. Moving focus to announce a message can also be disruptive and confusing.
+
+Announcing status messages without shifting focus supports keyboard users and users with cognitive disabilities. It allows users to stay oriented while still receiving timely feedback.
+
+## What to check for
+
+- Status messages are programmatically exposed to assistive technologies.
+- Messages are announced without moving visual focus.
+- Appropriate roles or properties are used for live updates.
+- Announcements are concise and relevant to the user’s action.
+- Repeated or unnecessary announcements are avoided.
+
+## What to avoid
+
+- Requiring focus to move in order to announce a status message.
+- Displaying visual-only updates with no programmatic announcement.
+- Announcing non-essential changes that interrupt the user.
+- Using incorrect roles that cause unexpected focus behavior.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 4.1.3 Status Messages
+- EN 301 549 clause 9.4.1.3 Status Messages

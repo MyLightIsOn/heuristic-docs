@@ -1,0 +1,39 @@
+---
+title: Is all content placed within a landmark or region?
+keywords: ["landmarks", "regions", "page structure"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Page content must be contained within appropriate landmarks or regions. Landmarks define the overall structure of the page and help users understand how content is organized.
+
+Common landmarks include header, navigation, main, complementary, and footer. Custom regions may also be used when native landmarks are not sufficient.
+
+## Why this matters
+
+Screen reader users rely on landmarks to navigate pages efficiently. When content exists outside of landmarks, it may be harder to find or understand in context.
+
+Landmarks also support keyboard users and users with cognitive disabilities. A clear structure improves orientation and reduces the effort required to move through content.
+
+## What to check for
+
+- All visible content is contained within a landmark or region.
+- Each landmark has a clear and appropriate role.
+- The main content is contained within a single main landmark.
+- Repeated content uses consistent landmarks across pages.
+- Assistive technologies can identify and navigate landmarks.
+
+## What to avoid
+
+- Placing content outside of any landmark or region.
+- Using multiple main landmarks on the same page.
+- Applying landmark roles purely for visual grouping.
+- Creating regions without an accessible name when required.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- WCAG 2.2 Success Criterion 2.4.1 Bypass Blocks
+- EN 301 549 clause 9.1.3.1 Info and Relationships
+- EN 301 549 clause 9.2.4.1 Bypass Blocks

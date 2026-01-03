@@ -1,0 +1,41 @@
+---
+title: Are form errors identified in a way that does not rely on sight?
+keywords: ["form errors", "error identification", "non-visual feedback"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Form errors must be identified in a way that does not depend on visual cues. Users must be able to perceive and understand errors through text and programmatic information.
+
+Error identification should clearly indicate which field is affected and why. This information must be available to assistive technologies.
+
+## Why this matters
+
+Screen reader users cannot perceive visual indicators such as color, icons, or positioning. If errors rely on sight alone, they may go unnoticed or be unclear.
+
+Keyboard users and users with cognitive disabilities also benefit from clear, non-visual error identification. Explicit messages reduce confusion and support efficient error recovery.
+
+## What to check for
+
+- Errors are identified using text that describes the problem.
+- Error messages are programmatically associated with the relevant fields.
+- Errors are announced by assistive technologies when they occur.
+- Color is not the only means used to indicate an error.
+- Users can locate and understand errors without visual context.
+
+## What to avoid
+
+- Indicating errors only with color, icons, or visual placement.
+- Displaying error states without descriptive text.
+- Failing to associate error messages with form controls.
+- Requiring users to infer errors from layout or styling changes.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 3.3.1 Error Identification
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- WCAG 2.2 Success Criterion 4.1.3 Status Messages
+- EN 301 549 clause 9.3.3.1 Error Identification
+- EN 301 549 clause 9.1.3.1 Info and Relationships
+- EN 301 549 clause 9.4.1.3 Status Messages

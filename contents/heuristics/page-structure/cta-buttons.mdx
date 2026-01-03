@@ -1,0 +1,39 @@
+---
+title: Are buttons used for CTAs that trigger functionalities within the page?
+keywords: ["buttons", "calls to action", "functionality"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Calls to action that trigger functionality on the current page should be implemented as buttons. The semantic role must match the behavior the user initiates.
+
+Buttons are used for actions such as submitting a form, opening a dialog, toggling content, or updating data without navigating away.
+
+## Why this matters
+
+Assistive technology users rely on semantics to understand what will happen when an element is activated. When buttons are correctly used, expectations are clear and interactions are predictable.
+
+Screen reader users often navigate by controls such as buttons. Keyboard users depend on consistent activation and focus behavior for in-page actions.
+
+## What to check for
+
+- CTAs that trigger in-page actions are implemented as buttons.
+- Button semantics are preserved even when visually styled as links.
+- Buttons expose an accessible name that describes the action.
+- Assistive technologies announce the element as a button.
+- Keyboard activation triggers the intended functionality.
+
+## What to avoid
+
+- Using links to trigger in-page functionality.
+- Changing application state through elements exposed as links.
+- Removing button semantics for visual styling purposes.
+- Creating custom controls that do not expose the correct role.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- WCAG 2.2 Success Criterion 4.1.2 Name, Role, Value
+- EN 301 549 clause 9.1.3.1 Info and Relationships
+- EN 301 549 clause 9.4.1.2 Name, Role, Value

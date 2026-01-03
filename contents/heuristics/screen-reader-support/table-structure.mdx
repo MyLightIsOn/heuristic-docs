@@ -1,0 +1,41 @@
+---
+title: Do data tables have meaningful semantic column and row headers as well as a table name?
+keywords: ["data tables", "table headers", "table captions"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Data tables must use semantic markup to identify column headers, row headers, and a table name. Headers define how data cells relate to each other, and the table name provides overall context.
+
+The table name is typically provided with a caption or an accessible name. Header cells are identified programmatically so relationships are exposed to assistive technologies.
+
+## Why this matters
+
+Screen reader users rely on table semantics to understand data relationships. Without headers or a table name, data may be announced without context or meaning.
+
+Clear table structure also supports keyboard users and users with cognitive disabilities. It improves orientation, comprehension, and efficient navigation within tables.
+
+## What to check for
+
+- Data tables use semantic table markup.
+- Column headers are marked as headers.
+- Row headers are used where appropriate.
+- The table has a meaningful name or caption.
+- Assistive technologies can announce headers and table context.
+
+## What to avoid
+
+- Using tables for layout instead of data.
+- Presenting data without semantic headers.
+- Omitting a table name or caption.
+- Relying on visual styling alone to indicate headers.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- WCAG 2.2 Success Criterion 2.4.6 Headings and Labels
+- WCAG 2.2 Success Criterion 4.1.2 Name, Role, Value
+- EN 301 549 clause 9.1.3.1 Info and Relationships
+- EN 301 549 clause 9.2.4.6 Headings and Labels
+- EN 301 549 clause 9.4.1.2 Name, Role, Value

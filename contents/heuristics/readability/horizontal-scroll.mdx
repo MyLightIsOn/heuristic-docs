@@ -1,0 +1,39 @@
+---
+title: Does content require users to scroll both vertically and horizontally?
+keywords: ["reflow", "scrolling", "responsive layout"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Content should not require users to scroll in two directions to read or interact with it. Users should be able to scroll in a single direction, typically vertically, at common viewport sizes.
+
+Horizontal scrolling may be acceptable for specific components such as data tables or images when it is essential to the content. It should not be required for general reading or primary interactions.
+
+## Why this matters
+
+Users with low vision often zoom content to read it. When layouts force both horizontal and vertical scrolling, navigation becomes slow and disorienting.
+
+Keyboard and screen reader users are also affected. Two-dimensional scrolling increases effort and can make it harder to understand content order and context.
+
+## What to check for
+
+- Content reflows to fit the viewport when zoomed.
+- Horizontal scrolling is not required for body text or core interactions.
+- Layouts adapt at smaller widths without truncation.
+- Components that require horizontal scrolling are limited and intentional.
+- Reading order remains logical when content reflows.
+
+## What to avoid
+
+- Fixed-width layouts that cause horizontal scrolling.
+- Preventing content from wrapping when zoomed.
+- Requiring horizontal scrolling for paragraphs or forms.
+- Hiding content off screen without a clear way to access it.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.4.10 Reflow
+- WCAG 2.2 Success Criterion 1.4.4 Resize Text
+- EN 301 549 clause 9.1.4.10 Reflow
+- EN 301 549 clause 9.1.4.4 Resize Text

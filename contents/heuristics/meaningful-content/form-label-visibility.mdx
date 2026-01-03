@@ -1,0 +1,41 @@
+---
+title: Are form labels visible and persistent?
+keywords: ["form labels", "persistent labels", "forms"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Form labels must be visible and remain present at all times. Users should be able to identify the purpose of each field before, during, and after interaction.
+
+Labels should not disappear when a field receives focus or when input is entered. The label must remain available to support understanding and review.
+
+## Why this matters
+
+Screen reader users rely on labels to understand form fields consistently. If labels are hidden or removed, users may lose context when navigating or revisiting fields.
+
+Visible and persistent labels also support users with cognitive disabilities, low vision, or memory impairments. They reduce errors and make forms easier to complete, correct, and verify.
+
+## What to check for
+
+- Each form control has a visible label at all times.
+- Labels remain visible when the field is focused or filled.
+- Floating labels do not obscure or replace the label text.
+- Labels are not conveyed by placeholder text alone.
+- The visible label matches the programmatic accessible name.
+
+## What to avoid
+
+- Labels that disappear on focus or after input.
+- Using placeholder text as the only visible label.
+- Revealing labels only on hover or focus.
+- Relying on visual position or styling alone to convey meaning.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- WCAG 2.2 Success Criterion 3.3.2 Labels or Instructions
+- WCAG 2.2 Success Criterion 4.1.2 Name, Role, Value
+- EN 301 549 clause 9.1.3.1 Info and Relationships
+- EN 301 549 clause 9.3.3.2 Labels or Instructions
+- EN 301 549 clause 9.4.1.2 Name, Role, Value

@@ -1,0 +1,42 @@
+---
+title: Are form labels meaningful?
+keywords: ["form labels", "accessible names", "forms"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Every form control must have a label that clearly describes its purpose. The label should communicate what information is required or what action the control performs.
+
+Meaningful labels are provided through visible text or programmatic associations. This includes label elements, aria-label, or aria-labelledby when used correctly.
+
+## Why this matters
+
+Screen reader users rely on labels to understand form fields. If labels are missing, vague, or incorrect, users may not know what data to enter.
+
+Clear labels also support keyboard users and users with cognitive disabilities. They reduce errors and make forms easier to complete and review.
+
+## What to check for
+
+- Each form control has a programmatically associated label.
+- Labels clearly describe the expected input or action.
+- Required fields are indicated in a way that is accessible.
+- Placeholder text is not used as a replacement for labels.
+- Assistive technologies announce an accurate and specific label.
+
+## What to avoid
+
+- Missing labels or labels that are visually hidden without an accessible name.
+- Generic labels such as “input” or “field.”
+- Using only placeholder text to describe a field.
+- Labels that do not match the actual purpose of the control.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.3.1 Info and Relationships
+- WCAG 2.2 Success Criterion 3.3.2 Labels or Instructions
+- WCAG 2.2 Success Criterion 4.1.2 Name, Role, Value
+- EN 301 549 clause 9.1.3.1 Info and Relationships
+- EN 301 549 clause 9.3.3.2 Labels or Instructions
+- EN 301 549 clause 9.4.1.2 Name, Role, Value
+```

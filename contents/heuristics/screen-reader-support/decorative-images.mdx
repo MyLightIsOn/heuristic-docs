@@ -1,0 +1,37 @@
+---
+title: Are decorative images identified and marked in a way that they can be ignored by assistive technologies?
+keywords: ["decorative images", "non-text content", "assistive technologies"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Images that do not convey information or provide functionality must be identified as decorative. Decorative images should be hidden from assistive technologies so they are not announced to users.
+
+Marking images as decorative ensures that only meaningful content is exposed through accessibility APIs. This is typically done through empty alternative text or appropriate role usage.
+
+## Why this matters
+
+Screen reader users depend on concise and relevant output. Announcing decorative images adds noise and makes it harder to understand important content.
+
+Ignoring decorative images also improves efficiency for keyboard and assistive technology users. It reduces unnecessary stops and supports clearer navigation.
+
+## What to check for
+
+- Decorative images are marked so they are ignored by assistive technologies.
+- Informative images are not incorrectly marked as decorative.
+- Empty alternative text is used correctly for decorative images.
+- Decorative background images do not contain meaningful information.
+- Assistive technologies do not announce decorative visuals.
+
+## What to avoid
+
+- Providing descriptive alternative text for decorative images.
+- Leaving decorative images without explicit markup.
+- Using decorative images to convey important information.
+- Hiding informative images from assistive technologies.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.1.1 Non-text Content
+- EN 301 549 clause 9.1.1.1 Non-text Content

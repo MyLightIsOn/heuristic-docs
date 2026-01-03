@@ -1,0 +1,40 @@
+---
+title: Is real text used rather than images of text?
+keywords: ["real text", "images of text", "scalability"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Text content should be implemented as actual text, not baked into images. Users must be able to resize, restyle, and access text through assistive technologies.
+
+Images of text should only be used when the text presentation is essential to the information being conveyed. This is typically limited to logos or cases where no alternative is possible.
+
+## Why this matters
+
+Screen readers cannot interpret text embedded in images unless an accurate text alternative is provided. Even with alternatives, images of text reduce flexibility and usability.
+
+Real text supports zooming, reflow, high contrast modes, and user-defined styles. It also improves readability for users with low vision, dyslexia, or cognitive disabilities.
+
+## What to check for
+
+- Headings, labels, instructions, and body content are implemented as text.
+- Text can be resized without loss of content or functionality.
+- Custom fonts and styles are applied using CSS, not images.
+- Text remains readable in high contrast and forced color modes.
+- Any image of text has an equivalent accessible text alternative.
+
+## What to avoid
+
+- Using images to display headings, paragraphs, or buttons.
+- Embedding critical instructions or data in images.
+- Relying on alt text to compensate for unnecessary images of text.
+- Preventing users from resizing or restyling text.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.4.5 Images of Text
+- WCAG 2.2 Success Criterion 1.4.4 Resize Text
+- EN 301 549 clause 9.1.4.5 Images of Text
+- EN 301 549 clause 9.1.4.4 Resize Text
+

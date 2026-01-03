@@ -1,0 +1,42 @@
+---
+title: Is the focus indicator clearly visible when active elements receive focus?
+keywords: ["focus indicator", "focus visible", "accessibility", "keyboard navigation"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+When someone navigates an interface using a keyboard, there must be a clear visual indicator showing which interactive element currently has focus. This is often referred to as the focus indicator or focus outline.
+
+The focus indicator helps users understand where they are on the page as they move between links, buttons, form fields, and other interactive elements using keys such as Tab and Shift + Tab.
+
+A visible focus indicator should be easy to see against surrounding content and should not be removed or obscured by custom styling..
+
+## Why this matters
+
+Keyboard users rely on the focus indicator to orient themselves within the interface. Without a visible indicator, users cannot tell which element will respond when they press Enter or Space.
+
+For users with low vision, cognitive disabilities, or who are navigating quickly, a weak or missing focus indicator can make the interface confusing or unusable.
+
+A clearly visible focus indicator supports efficient navigation, reduces errors, and reinforces user control over interactions.
+
+## What to check for
+
+- Is there a visible focus indicator on all interactive elements, including links, buttons, form fields, and custom controls?
+- Does the focus indicator have sufficient contrast against the background and surrounding elements?
+- Is the focus indicator still visible when custom styles, themes, or animations are applied?
+- Does focus remain visible when navigating through complex components such as menus, dialogs, and toolbars?
+
+## What to avoid
+
+- Removing focus outlines without providing an equally visible custom alternative.
+- Focus indicators that blend into the background or are too subtle to notice.
+- Focus styles that only appear on mouse interaction but not during keyboard navigation.
+- Focus indicators that are clipped, hidden, or covered by other UI elements.
+
+## Related standards
+
+- WCAG 2.1 Success Criterion 2.4.7 Focus Visible
+- WCAG 2.1 Success Criterion 2.1.1 Keyboard
+- EN 301 549 clause 9.2.4.7 Focus Visible
+- EN 301 549 clause 9.2.4.11 Focus Appearance

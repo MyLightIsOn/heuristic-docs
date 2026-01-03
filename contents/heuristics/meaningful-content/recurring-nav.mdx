@@ -1,0 +1,43 @@
+---
+title: Are recurring navigation patterns and functionalities presented and labeled consistently throughout the system?
+keywords: ["meaningful content", "consistent navigation", "consistent identification", "navigation", "labeling"]
+owner: ["designer"]
+---
+
+## What this means
+
+Recurring navigation patterns and shared functionalities should be presented in a consistent way wherever they appear. Users encounter the same structure, placement, and labeling for navigation and common actions across the system.
+
+Consistency applies to how components look, how they behave, and how they are named. A control that performs the same function should not change its appearance, interaction, or label based on location.
+
+Accessible names and programmatic labels follow the same consistency. Assistive technologies announce the same control using the same name and role across contexts.
+
+## Why this matters
+
+Users build mental models as they move through an interface. When navigation patterns or labels change unexpectedly, those models break and users must slow down to reorient themselves.
+
+Inconsistent labeling can cause screen reader users to interpret identical actions as different controls. This increases cognitive load and can lead to errors or hesitation during task completion.
+
+Consistent patterns support predictability and efficiency. They reduce the effort required to learn and use the interface, particularly for users with cognitive disabilities or those relying on assistive technologies.
+
+## What to check for
+
+- Navigation structures remain stable across pages that serve similar purposes.
+- Identical actions use the same visible text and accessible name wherever they appear.
+- Repeated components behave the same way for mouse, keyboard, and touch interactions.
+- Icons representing the same function are paired with consistent text or accessible labels.
+- Roles, states, and properties exposed to assistive technologies do not vary between instances.
+
+## What to avoid
+
+- Changing labels for the same action without a clear and necessary distinction.
+- Moving or restructuring navigation in similar views without user benefit.
+- Using different visual treatments to represent the same functionality.
+- Implementing repeated components with different accessibility semantics.
+
+## Related standards
+
+- EN 301 549: 9.3.2.3 Consistent navigation
+- EN 301 549: 9.3.2.4 Consistent identification
+- WCAG 2.2: 3.2.3 Consistent Navigation
+- WCAG 2.2: 3.2.4 Consistent Identification

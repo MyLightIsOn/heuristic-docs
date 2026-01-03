@@ -1,0 +1,39 @@
+---
+title: Do active images have a meaningful accessible name?
+keywords: ["active images", "accessible names", "interactive content"]
+owner: ["designer","developer"]
+---
+
+## What this means
+
+Images that function as interactive controls must have a meaningful accessible name. The name must describe the action or destination triggered by the image.
+
+Active images include images used as links, buttons, or other interactive elements. Decorative images are excluded when they do not provide information or functionality.
+
+## Why this matters
+
+Screen reader users rely on accessible names to understand what an interactive element does. Without a meaningful name, an active image may be announced without context or purpose.
+
+Keyboard users and users of voice control also depend on clear names to identify and activate controls. Meaningful names make interaction predictable and efficient.
+
+## What to check for
+
+- Active images have an accessible name that describes their action or destination.
+- The accessible name matches the visible intent of the image.
+- Images used as links or buttons are announced with the correct role.
+- Accessible names are provided through appropriate markup.
+- Assistive technologies announce a clear and specific control name.
+
+## What to avoid
+
+- Leaving active images without an accessible name.
+- Using file names or generic text for interactive images.
+- Assigning decorative images an interactive name.
+- Relying on surrounding visual context to explain the action.
+
+## Related standards
+
+- WCAG 2.2 Success Criterion 1.1.1 Non-text Content
+- WCAG 2.2 Success Criterion 4.1.2 Name, Role, Value
+- EN 301 549 clause 9.1.1.1 Non-text Content
+- EN 301 549 clause 9.4.1.2 Name, Role, Value
