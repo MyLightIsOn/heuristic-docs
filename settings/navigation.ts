@@ -4,6 +4,7 @@ export const Navigations = [
   {
     title: "Heuristics",
     href: `/docs${PageRoutes[0].href}`,
+    external: false,
   },
 ]
 
