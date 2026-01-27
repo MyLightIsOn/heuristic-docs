@@ -109,6 +109,45 @@ This wraps Next.js navigation with smooth transition effects.
 **Custom Component Removal:**
 The script removes these custom components from search content: `Tabs`, `TabsList`, `TabsTrigger`, `pre`, `Card`, `CardGrid`, `Step`, `StepItem`, `Note`, `FileTree`, `Folder`, `File`, `OwnerBadge`, `KeywordTags`, `StandardsReference`
 
+### Component Analyzer Feature
+
+**Overview:**
+The `/analyzer` page provides an AI-powered tool to help users identify relevant accessibility heuristics for their components. Users can input component information through three methods: element selection, image upload, or text description.
+
+**Architecture:**
+- Full implementation details in `ANALYZER_IMPLEMENTATION.md`
+- Type definitions in `lib/types/analyzer.ts`
+- Uses OpenAI API for image/text analysis (GPT-4 Vision and GPT-4)
+- Generates PDF and Markdown checklists using jsPDF and file-saver
+
+**File Structure:**
+```
+app/analyzer/
+  ├── page.tsx                    # Main analyzer page
+  └── components/                 # Analyzer UI components
+
+lib/analyzer/
+  ├── element-mapping.ts          # Maps UI elements to heuristics
+  ├── openai-client.ts            # OpenAI API integration
+  ├── heuristic-matcher.ts        # Matching logic
+  └── export-generator.ts         # PDF/Markdown generation
+
+lib/types/
+  └── analyzer.ts                 # TypeScript type definitions
+```
+
+**Key Types:**
+- `InputMethod` - How user provides component info (elements, image, description, figma)
+- `ComponentElement` - UI element types (button, text-input, etc.)
+- `AnalysisInput` - Input data structure
+- `DetectedComponent` - AI analysis results
+- `HeuristicMatch` - Matched heuristic with metadata
+- `AnalysisResult` - Complete analysis output
+- `OwnerFilter` - Filter results by designer/developer
+
+**Environment Variables:**
+- `OPENAI_API_KEY` - Required for AI-powered analysis features
+
 ## Configuration Files
 
 ### Settings
