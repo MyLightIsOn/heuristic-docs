@@ -6,6 +6,11 @@ export const Navigations = [
     href: `/docs${PageRoutes[0].href}`,
     external: false,
   },
+  {
+    title: "Analyzer",
+    href: "/analyzer",
+    external: false,
+  },
 ]
 
 export const GitHubLink = {
