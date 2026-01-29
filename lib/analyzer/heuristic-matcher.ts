@@ -73,11 +73,7 @@ export async function matchHeuristics(
         slug,
         category,
         title: document.frontmatter.title,
-        owner:
-          ((document.frontmatter as Record<string, unknown>).owner as (
-            | "designer"
-            | "developer"
-          )[]) || [],
+        owner: document.frontmatter.owner || [],
         keywords: parseKeywords(document.frontmatter.keywords),
         preview,
       }
@@ -103,9 +99,10 @@ export async function matchHeuristics(
   )
 
   // Get category order from Documents settings
-  const categoryOrder = Documents.filter((doc) => !doc.spacer && doc.href).map(
-    (doc) => doc.href.slice(1) // Remove leading "/"
-  )
+  const categoryOrder = Documents.filter(
+    (doc): doc is Extract<typeof doc, { href: string }> =>
+      "href" in doc && typeof doc.href === "string"
+  ).map((doc) => doc.href.slice(1)) // Remove leading "/"
 
   // Sort by category order
   uniqueHeuristics.sort((a, b) => {

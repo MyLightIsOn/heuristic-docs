@@ -26,6 +26,7 @@ interface BaseMdxFrontmatter {
   title: string
   description: string
   keywords: string
+  owner?: ("designer" | "developer")[]
 }
 
 async function parseMdx<Frontmatter>(rawMdx: string) {
