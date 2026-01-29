@@ -87,7 +87,14 @@ export function AnalyzerClient() {
 
         if (!matchResponse.ok) {
           const errorData = await matchResponse.json()
-          throw new Error(errorData.error || "Failed to match heuristics")
+          console.error("[Analyzer] Heuristic matching failed:", {
+            status: matchResponse.status,
+            statusText: matchResponse.statusText,
+            error: errorData,
+          })
+          throw new Error(
+            errorData.error || `Failed to match heuristics (${matchResponse.status})`
+          )
         }
 
         const matchData = await matchResponse.json()
@@ -111,7 +118,14 @@ export function AnalyzerClient() {
 
         if (!response.ok) {
           const errorData = await response.json()
-          throw new Error(errorData.error || "Failed to analyze image")
+          console.error("[Analyzer] Image analysis failed:", {
+            status: response.status,
+            statusText: response.statusText,
+            error: errorData,
+          })
+          throw new Error(
+            errorData.error || `Failed to analyze image (${response.status})`
+          )
         }
 
         const data = await response.json()
@@ -130,7 +144,14 @@ export function AnalyzerClient() {
 
         if (!matchResponse.ok) {
           const errorData = await matchResponse.json()
-          throw new Error(errorData.error || "Failed to match heuristics")
+          console.error("[Analyzer] Heuristic matching failed:", {
+            status: matchResponse.status,
+            statusText: matchResponse.statusText,
+            error: errorData,
+          })
+          throw new Error(
+            errorData.error || `Failed to match heuristics (${matchResponse.status})`
+          )
         }
 
         const matchData = await matchResponse.json()
@@ -154,7 +175,14 @@ export function AnalyzerClient() {
 
         if (!response.ok) {
           const errorData = await response.json()
-          throw new Error(errorData.error || "Failed to analyze description")
+          console.error("[Analyzer] Description analysis failed:", {
+            status: response.status,
+            statusText: response.statusText,
+            error: errorData,
+          })
+          throw new Error(
+            errorData.error || `Failed to analyze description (${response.status})`
+          )
         }
 
         const data = await response.json()
@@ -173,7 +201,14 @@ export function AnalyzerClient() {
 
         if (!matchResponse.ok) {
           const errorData = await matchResponse.json()
-          throw new Error(errorData.error || "Failed to match heuristics")
+          console.error("[Analyzer] Heuristic matching failed:", {
+            status: matchResponse.status,
+            statusText: matchResponse.statusText,
+            error: errorData,
+          })
+          throw new Error(
+            errorData.error || `Failed to match heuristics (${matchResponse.status})`
+          )
         }
 
         const matchData = await matchResponse.json()
