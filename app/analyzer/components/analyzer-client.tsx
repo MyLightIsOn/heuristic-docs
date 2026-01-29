@@ -7,11 +7,11 @@ import {
   generateMarkdownChecklist,
   generatePDFChecklist,
 } from "@/lib/analyzer/export-generator"
-import { matchHeuristics } from "@/lib/analyzer/heuristic-matcher"
 import type {
   AnalysisInput,
   AnalysisResult,
   DetectedComponent,
+  HeuristicMatch,
 } from "@/lib/types/analyzer"
 
 import { InputTabs } from "./input-tabs"
@@ -45,13 +45,17 @@ export function AnalyzerClient() {
   /**
    * Handles the analyze action based on the input method.
    *
+   * All methods follow the same pattern:
+   * 1. Call appropriate API route to get detected elements
+   * 2. Call /api/analyzer/match to get matching heuristics
+   * 3. Set analysis result state
+   *
    * For 'elements' method:
-   * - Directly calls matchHeuristics with the selected elements
-   * - No API call needed
+   * - Calls /api/analyzer/match with selected elements
    *
    * For 'image' or 'description' methods:
    * - Calls /api/analyzer to get AI-detected elements
-   * - Then calls matchHeuristics with detected elements
+   * - Then calls /api/analyzer/match with detected elements
    *
    * @param input - The analysis input containing method and data
    */
@@ -61,6 +65,7 @@ export function AnalyzerClient() {
 
     try {
       let detected: DetectedComponent
+      let heuristics: HeuristicMatch[]
 
       // For element picker, directly use the selected elements
       if (input.method === "elements" && input.data.elements) {
@@ -69,8 +74,24 @@ export function AnalyzerClient() {
           elements: input.data.elements,
         }
 
-        // Match heuristics based on selected elements
-        const heuristics = await matchHeuristics(input.data.elements)
+        // Call API to match heuristics based on selected elements
+        const matchResponse = await fetch("/api/analyzer/match", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            elements: input.data.elements,
+          }),
+        })
+
+        if (!matchResponse.ok) {
+          const errorData = await matchResponse.json()
+          throw new Error(errorData.error || "Failed to match heuristics")
+        }
+
+        const matchData = await matchResponse.json()
+        heuristics = matchData.heuristics
 
         setAnalysisResult({
           detected,
@@ -96,8 +117,24 @@ export function AnalyzerClient() {
         const data = await response.json()
         detected = data.detected
 
-        // Match heuristics based on detected elements
-        const heuristics = await matchHeuristics(detected.elements)
+        // Call API to match heuristics based on detected elements
+        const matchResponse = await fetch("/api/analyzer/match", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            elements: detected.elements,
+          }),
+        })
+
+        if (!matchResponse.ok) {
+          const errorData = await matchResponse.json()
+          throw new Error(errorData.error || "Failed to match heuristics")
+        }
+
+        const matchData = await matchResponse.json()
+        heuristics = matchData.heuristics
 
         setAnalysisResult({
           detected,
@@ -123,8 +160,24 @@ export function AnalyzerClient() {
         const data = await response.json()
         detected = data.detected
 
-        // Match heuristics based on detected elements
-        const heuristics = await matchHeuristics(detected.elements)
+        // Call API to match heuristics based on detected elements
+        const matchResponse = await fetch("/api/analyzer/match", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            elements: detected.elements,
+          }),
+        })
+
+        if (!matchResponse.ok) {
+          const errorData = await matchResponse.json()
+          throw new Error(errorData.error || "Failed to match heuristics")
+        }
+
+        const matchData = await matchResponse.json()
+        heuristics = matchData.heuristics
 
         setAnalysisResult({
           detected,
