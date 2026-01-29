@@ -81,16 +81,16 @@ export async function analyzeComponentImage(
 
 Valid element types: ${VALID_ELEMENTS.join(", ")}
 
-Return ONLY a JSON array of element types found, with no additional text or explanation.
+Return ONLY a JSON object with an "elements" array containing the element types found.
 
-Example response: ["text-input", "button", "link"]`,
+Example response: {"elements": ["text-input", "button", "link"]}`,
         },
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "Analyze this UI component image and list all the element types you can identify. Return only a JSON array of element types.",
+              text: 'Analyze this UI component image and list all the element types you can identify. Return a JSON object with an "elements" array.',
             },
             {
               type: "image_url",
