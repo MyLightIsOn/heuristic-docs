@@ -4,11 +4,19 @@ import OpenAI from "openai"
 import type { ComponentElement } from "@/lib/types/analyzer"
 
 /**
- * Initialize OpenAI client with API key from environment variables
+ * Lazily initialize OpenAI client with API key from environment variables.
+ * This prevents instantiation during build time when the API key may not be available.
  */
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+let openaiInstance: OpenAI | null = null
+
+function getOpenAIClient(): OpenAI {
+  if (!openaiInstance) {
+    openaiInstance = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+  }
+  return openaiInstance
+}
 
 /**
  * List of all valid component elements that can be detected
@@ -62,6 +70,7 @@ export async function analyzeComponentImage(
 
     console.log(`[OpenAI] Analyzing image: ${image.name} (${image.size} bytes)`)
 
+    const openai = getOpenAIClient()
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
@@ -176,6 +185,7 @@ export async function analyzeComponentDescription(
   try {
     console.log(`[OpenAI] Analyzing description: "${description.slice(0, 100)}..."`)
 
+    const openai = getOpenAIClient()
     const response = await openai.chat.completions.create({
       model: "gpt-4o",
       messages: [
