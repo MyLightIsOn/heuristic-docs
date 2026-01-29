@@ -1,6 +1,7 @@
 "use client"
 
-import { Download, FileText, FileDown, Loader2 } from "lucide-react"
+import { Download, FileDown, FileText, Loader2 } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -14,7 +15,10 @@ interface ExportButtonProps {
   isLoading?: boolean
 }
 
-export function ExportButton({ onExport, isLoading = false }: ExportButtonProps) {
+export function ExportButton({
+  onExport,
+  isLoading = false,
+}: ExportButtonProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,10 +37,7 @@ export function ExportButton({ onExport, isLoading = false }: ExportButtonProps)
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem
-          onClick={() => onExport("pdf")}
-          disabled={isLoading}
-        >
+        <DropdownMenuItem onClick={() => onExport("pdf")} disabled={isLoading}>
           <FileText />
           Download PDF
         </DropdownMenuItem>

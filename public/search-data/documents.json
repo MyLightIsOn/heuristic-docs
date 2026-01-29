@@ -59,10 +59,7 @@
     "content": "# Keyboard Interaction\n\nThis category covers heuristics that ensure users can navigate and interact with your interface using a keyboard alone, without requiring a mouse or other pointing device.\n\n## Why this matters\n\nMany users rely exclusively on keyboard navigation, including:\n\n* People with motor disabilities who cannot use a mouse\n* Blind users navigating with screen readers\n* Power users who prefer keyboard shortcuts for efficiency\n* Anyone whose pointing device has stopped working\n\nKeyboard accessibility is fundamental to an inclusive digital experience.\n\n## Heuristics in this category\n\nThis category contains 4 heuristics covering essential keyboard interaction patterns.\n",
     "_searchMeta": {
       "cleanContent": "keyboard interaction this category covers heuristics that ensure users can navigate and interact with your interface using a keyboard alone without requiring a mouse or other pointing device why this matters many users rely exclusively on keyboard navigation including: people with motor disabilities who cannot use a mouse blind users navigating with screen readers power users who prefer keyboard shortcuts for efficiency anyone whose pointing device has stopped working keyboard accessibility is fundamental to an inclusive digital experience heuristics in this category this category contains 4 heuristics covering essential keyboard interaction patterns",
-      "headings": [
-        "Why this matters",
-        "Heuristics in this category"
-      ],
+      "headings": ["Why this matters", "Heuristics in this category"],
       "keywords": [
         "keyboard",
         "navigation",
@@ -239,10 +236,7 @@
     "content": "# Meaningful Content\n\nThis category covers heuristics that ensure content is clear, descriptive, and understandable to all users, regardless of how they access it.\n\n## Why this matters\n\nContent must be self-explanatory and provide sufficient context for users to:\n\n* Understand what interactive elements do\n* Navigate efficiently through pages and forms\n* Make informed decisions\n* Access information regardless of sensory ability\n\nMeaningful content reduces confusion, prevents errors, and ensures everyone can use your interface effectively.\n\n## Heuristics in this category\n\nThis category contains 7 heuristics covering content clarity and meaningfulness.\n",
     "_searchMeta": {
       "cleanContent": "meaningful content this category covers heuristics that ensure content is clear descriptive and understandable to all users regardless of how they access it why this matters content must be self-explanatory and provide sufficient context for users to: understand what interactive elements do navigate efficiently through pages and forms make informed decisions access information regardless of sensory ability meaningful content reduces confusion prevents errors and ensures everyone can use your interface effectively heuristics in this category this category contains 7 heuristics covering content clarity and meaningfulness",
-      "headings": [
-        "Why this matters",
-        "Heuristics in this category"
-      ],
+      "headings": ["Why this matters", "Heuristics in this category"],
       "keywords": [
         "content",
         "clarity",
@@ -447,10 +441,7 @@
     "content": "# Page Structure\n\nThis category covers heuristics that ensure pages are well-organized with clear, semantic structure that helps all users understand and navigate content.\n\n## Why this matters\n\nProper page structure:\n\n* Helps screen reader users navigate efficiently using headings and landmarks\n* Allows users to scan and understand content hierarchy\n* Enables browser features like outline views and \"skip to\" navigation\n* Improves SEO and content discoverability\n* Makes content easier to maintain and style\n\nA well-structured page is like a well-organized book with clear chapters and sections.\n\n## Heuristics in this category\n\nThis category contains 6 heuristics covering page organization and semantic structure.\n",
     "_searchMeta": {
       "cleanContent": "page structure this category covers heuristics that ensure pages are well-organized with clear semantic structure that helps all users understand and navigate content why this matters proper page structure: helps screen reader users navigate efficiently using headings and landmarks allows users to scan and understand content hierarchy enables browser features like outline views and skip to navigation improves seo and content discoverability makes content easier to maintain and style a well-structured page is like a well-organized book with clear chapters and sections heuristics in this category this category contains 6 heuristics covering page organization and semantic structure",
-      "headings": [
-        "Why this matters",
-        "Heuristics in this category"
-      ],
+      "headings": ["Why this matters", "Heuristics in this category"],
       "keywords": [
         "structure",
         "headings",
@@ -573,10 +564,7 @@
     "content": "# Quality of Life\n\nThis category covers heuristics that enhance the overall user experience, making interfaces more convenient, efficient, and pleasant to use.\n\n## Why this matters\n\nQuality of life improvements:\n\n* Reduce cognitive load and user frustration\n* Make tasks faster and more efficient to complete\n* Accommodate different user preferences and contexts\n* Prevent common errors and help users recover gracefully\n* Build trust and satisfaction with your product\n\nThese heuristics go beyond basic accessibility to create genuinely delightful experiences.\n\n## Heuristics in this category\n\nThis category contains 7 heuristics covering usability enhancements and user experience improvements.\n",
     "_searchMeta": {
       "cleanContent": "quality of life this category covers heuristics that enhance the overall user experience making interfaces more convenient efficient and pleasant to use why this matters quality of life improvements: reduce cognitive load and user frustration make tasks faster and more efficient to complete accommodate different user preferences and contexts prevent common errors and help users recover gracefully build trust and satisfaction with your product these heuristics go beyond basic accessibility to create genuinely delightful experiences heuristics in this category this category contains 7 heuristics covering usability enhancements and user experience improvements",
-      "headings": [
-        "Why this matters",
-        "Heuristics in this category"
-      ],
+      "headings": ["Why this matters", "Heuristics in this category"],
       "keywords": [
         "usability",
         "user experience",
@@ -777,10 +765,7 @@
     "content": "# Readability\n\nThis category covers heuristics that ensure text content is easy to read and understand for all users.\n\n## Why this matters\n\nReadable content:\n\n* Serves users with low vision, dyslexia, or cognitive disabilities\n* Reduces eye strain for all users\n* Improves comprehension and retention\n* Works better on different devices and screen sizes\n* Makes content accessible in various lighting conditions\n\nGood readability is essential for effective communication.\n\n## Heuristics in this category\n\nThis category contains 6 heuristics covering text presentation and readability.\n",
     "_searchMeta": {
       "cleanContent": "readability this category covers heuristics that ensure text content is easy to read and understand for all users why this matters readable content: serves users with low vision dyslexia or cognitive disabilities reduces eye strain for all users improves comprehension and retention works better on different devices and screen sizes makes content accessible in various lighting conditions good readability is essential for effective communication heuristics in this category this category contains 6 heuristics covering text presentation and readability",
-      "headings": [
-        "Why this matters",
-        "Heuristics in this category"
-      ],
+      "headings": ["Why this matters", "Heuristics in this category"],
       "keywords": [
         "readability",
         "typography",
@@ -981,10 +966,7 @@
     "content": "# Screen Reader Support\n\nThis category covers heuristics that ensure content works effectively with screen readers and other assistive technologies.\n\n## Why this matters\n\nScreen reader support:\n\n* Enables blind and low-vision users to access your content\n* Ensures information is conveyed programmatically, not just visually\n* Provides context and status updates that sighted users get automatically\n* Makes complex interactions understandable through audio\n* Demonstrates commitment to inclusive design\n\nScreen readers translate visual interfaces into audio, and proper support makes this translation accurate and efficient.\n\n## Heuristics in this category\n\nThis category contains 7 heuristics covering screen reader optimization and assistive technology support.\n",
     "_searchMeta": {
       "cleanContent": "screen reader support this category covers heuristics that ensure content works effectively with screen readers and other assistive technologies why this matters screen reader support: enables blind and low-vision users to access your content ensures information is conveyed programmatically not just visually provides context and status updates that sighted users get automatically makes complex interactions understandable through audio demonstrates commitment to inclusive design screen readers translate visual interfaces into audio and proper support makes this translation accurate and efficient heuristics in this category this category contains 7 heuristics covering screen reader optimization and assistive technology support",
-      "headings": [
-        "Why this matters",
-        "Heuristics in this category"
-      ],
+      "headings": ["Why this matters", "Heuristics in this category"],
       "keywords": [
         "screen reader",
         "assistive technology",

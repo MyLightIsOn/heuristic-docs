@@ -1,6 +1,6 @@
 import { Link } from "@/lib/transition"
-import { OwnerBadge } from "@/components/markdown/owner-badge"
 import type { HeuristicMatch } from "@/lib/types/analyzer"
+import { OwnerBadge } from "@/components/markdown/owner-badge"
 
 interface HeuristicCardProps {
   heuristic: HeuristicMatch

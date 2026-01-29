@@ -8,6 +8,7 @@
 "use client"
 
 import { useState } from "react"
+
 import { ImageUploader } from "./image-uploader"
 
 export function ImageUploaderExample() {
@@ -37,7 +38,6 @@ export function ImageUploaderExample() {
 
       // Handle the result (show heuristics, etc.)
       // This would typically update state to display the results
-
     } catch (error) {
       console.error("Error analyzing image:", error)
       // Handle error (show error message to user)

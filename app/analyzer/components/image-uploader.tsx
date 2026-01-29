@@ -1,8 +1,9 @@
 "use client"
 
-import { useState, useRef, type DragEvent, type ChangeEvent } from "react"
-import { Button } from "@/components/ui/button"
+import { useRef, useState, type ChangeEvent, type DragEvent } from "react"
+
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 interface ImageUploaderProps {
   onAnalyze: (image: File) => void
@@ -10,7 +11,13 @@ interface ImageUploaderProps {
 }
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
-const ACCEPTED_FORMATS = ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/svg+xml"]
+const ACCEPTED_FORMATS = [
+  "image/png",
+  "image/jpeg",
+  "image/jpg",
+  "image/webp",
+  "image/svg+xml",
+]
 
 /**
  * Image Uploader Component
@@ -24,7 +31,10 @@ const ACCEPTED_FORMATS = ["image/png", "image/jpeg", "image/jpg", "image/webp", 
  * - Image preview after upload
  * - Loading state during analysis
  */
-export function ImageUploader({ onAnalyze, isLoading = false }: ImageUploaderProps) {
+export function ImageUploader({
+  onAnalyze,
+  isLoading = false,
+}: ImageUploaderProps) {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
@@ -181,7 +191,7 @@ export function ImageUploader({ onAnalyze, isLoading = false }: ImageUploaderPro
               <img
                 src={previewUrl}
                 alt="Uploaded component preview"
-                className="h-auto w-full max-h-96 object-contain"
+                className="h-auto max-h-96 w-full object-contain"
               />
             )}
           </div>
@@ -206,9 +216,7 @@ export function ImageUploader({ onAnalyze, isLoading = false }: ImageUploaderPro
               <span className="truncate font-medium text-zinc-900 dark:text-zinc-50">
                 {uploadedImage.name}
               </span>
-              <span>
-                ({(uploadedImage.size / 1024 / 1024).toFixed(2)} MB)
-              </span>
+              <span>({(uploadedImage.size / 1024 / 1024).toFixed(2)} MB)</span>
             </div>
 
             <Button
