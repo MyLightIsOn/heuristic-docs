@@ -1,9 +1,10 @@
 "use client"
 
 import { useState } from "react"
+
 import { ComponentElement } from "@/lib/types/analyzer"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 
 interface ElementPickerProps {
   onAnalyze: (elements: ComponentElement[]) => void
@@ -21,7 +22,7 @@ const ELEMENT_GROUPS = {
     { value: "file-upload", label: "File Upload" },
     { value: "toggle", label: "Toggle Switch" },
   ] as const,
-  "Interactive": [
+  Interactive: [
     { value: "button", label: "Button" },
     { value: "link", label: "Link" },
     { value: "dropdown", label: "Dropdown Menu" },
@@ -30,24 +31,32 @@ const ELEMENT_GROUPS = {
     { value: "tabs", label: "Tabs" },
     { value: "accordion", label: "Accordion" },
   ] as const,
-  "Content": [
+  Content: [
     { value: "heading", label: "Heading" },
     { value: "paragraph", label: "Paragraph" },
     { value: "list", label: "List" },
     { value: "table", label: "Table" },
     { value: "icon", label: "Icon" },
   ] as const,
-  "Media": [
+  Media: [
     { value: "image", label: "Image" },
     { value: "video", label: "Video" },
     { value: "audio", label: "Audio" },
   ] as const,
 }
 
-export function ElementPicker({ onAnalyze, isLoading = false }: ElementPickerProps) {
-  const [selectedElements, setSelectedElements] = useState<ComponentElement[]>([])
+export function ElementPicker({
+  onAnalyze,
+  isLoading = false,
+}: ElementPickerProps) {
+  const [selectedElements, setSelectedElements] = useState<ComponentElement[]>(
+    []
+  )
 
-  const handleCheckboxChange = (element: ComponentElement, checked: boolean) => {
+  const handleCheckboxChange = (
+    element: ComponentElement,
+    checked: boolean
+  ) => {
     if (checked) {
       setSelectedElements((prev) => [...prev, element])
     } else {
@@ -66,13 +75,20 @@ export function ElementPicker({ onAnalyze, isLoading = false }: ElementPickerPro
       <div className="space-y-6">
         {Object.entries(ELEMENT_GROUPS).map(([groupName, elements]) => (
           <div key={groupName} className="space-y-3">
-            <h3 className="text-sm font-semibold text-foreground">{groupName}</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <h3 className="text-sm font-semibold text-foreground">
+              {groupName}
+            </h3>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
               {elements.map((element) => (
-                <div key={element.value} className="flex items-center space-x-2">
+                <div
+                  key={element.value}
+                  className="flex items-center space-x-2"
+                >
                   <Checkbox
                     id={element.value}
-                    checked={selectedElements.includes(element.value as ComponentElement)}
+                    checked={selectedElements.includes(
+                      element.value as ComponentElement
+                    )}
                     onCheckedChange={(checked) =>
                       handleCheckboxChange(
                         element.value as ComponentElement,
@@ -83,7 +99,7 @@ export function ElementPicker({ onAnalyze, isLoading = false }: ElementPickerPro
                   />
                   <label
                     htmlFor={element.value}
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                    className="cursor-pointer text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                   >
                     {element.label}
                   </label>
@@ -94,10 +110,10 @@ export function ElementPicker({ onAnalyze, isLoading = false }: ElementPickerPro
         ))}
       </div>
 
-      <div className="flex items-center justify-between pt-4 border-t">
+      <div className="flex items-center justify-between border-t pt-4">
         <p className="text-sm text-muted-foreground">
-          {selectedElements.length} {selectedElements.length === 1 ? "element" : "elements"}{" "}
-          selected
+          {selectedElements.length}{" "}
+          {selectedElements.length === 1 ? "element" : "elements"} selected
         </p>
         <Button
           onClick={handleAnalyze}

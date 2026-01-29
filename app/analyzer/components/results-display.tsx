@@ -1,21 +1,25 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useMemo, useState } from "react"
+
 import type { AnalysisResult, OwnerFilter } from "@/lib/types/analyzer"
-import { HeuristicCard } from "./heuristic-card"
-import { ExportButton } from "./export-button"
 import { Button } from "@/components/ui/button"
+
+import { ExportButton } from "./export-button"
+import { HeuristicCard } from "./heuristic-card"
 
 interface ResultsDisplayProps {
   result: AnalysisResult
   onReset: () => void
   onExport: (format: "pdf" | "markdown") => void
+  isExporting?: boolean
 }
 
 export function ResultsDisplay({
   result,
   onReset,
   onExport,
+  isExporting = false,
 }: ResultsDisplayProps) {
   const [activeFilter, setActiveFilter] = useState<OwnerFilter>("all")
 
@@ -111,7 +115,7 @@ export function ResultsDisplay({
         </div>
 
         <div className="flex gap-2">
-          <ExportButton onExport={onExport} />
+          <ExportButton onExport={onExport} isLoading={isExporting} />
           <Button variant="outline" onClick={onReset}>
             Start Over
           </Button>

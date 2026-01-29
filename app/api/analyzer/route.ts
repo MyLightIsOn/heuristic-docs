@@ -1,9 +1,10 @@
 // app/api/analyzer/route.ts
 
 import { NextRequest, NextResponse } from "next/server"
+
 import {
-  analyzeComponentImage,
   analyzeComponentDescription,
+  analyzeComponentImage,
   isOpenAIConfigured,
 } from "@/lib/analyzer/openai-client"
 import type { ComponentElement } from "@/lib/types/analyzer"
@@ -41,7 +42,10 @@ export async function POST(request: NextRequest) {
     // Check if OpenAI API key is configured
     if (!isOpenAIConfigured()) {
       return NextResponse.json(
-        { error: "OpenAI API key is not configured. Please set OPENAI_API_KEY environment variable." },
+        {
+          error:
+            "OpenAI API key is not configured. Please set OPENAI_API_KEY environment variable.",
+        },
         { status: 401 }
       )
     }
@@ -62,16 +66,27 @@ export async function POST(request: NextRequest) {
 
       if (!image || !(image instanceof File)) {
         return NextResponse.json(
-          { error: "Missing or invalid 'image' field in form data. Please provide a valid image file." },
+          {
+            error:
+              "Missing or invalid 'image' field in form data. Please provide a valid image file.",
+          },
           { status: 400 }
         )
       }
 
       // Validate image file type
-      const validImageTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"]
+      const validImageTypes = [
+        "image/png",
+        "image/jpeg",
+        "image/jpg",
+        "image/webp",
+        "image/gif",
+      ]
       if (!validImageTypes.includes(image.type)) {
         return NextResponse.json(
-          { error: `Invalid image type: ${image.type}. Supported types: PNG, JPEG, WebP, GIF.` },
+          {
+            error: `Invalid image type: ${image.type}. Supported types: PNG, JPEG, WebP, GIF.`,
+          },
           { status: 400 }
         )
       }
@@ -80,20 +95,25 @@ export async function POST(request: NextRequest) {
       const maxSize = 10 * 1024 * 1024 // 10MB
       if (image.size > maxSize) {
         return NextResponse.json(
-          { error: `Image file too large: ${Math.round(image.size / 1024 / 1024)}MB. Maximum size: 10MB.` },
+          {
+            error: `Image file too large: ${Math.round(image.size / 1024 / 1024)}MB. Maximum size: 10MB.`,
+          },
           { status: 400 }
         )
       }
 
       inputType = "image"
-      console.log(`[API] Analyzing image: ${image.name} (${image.type}, ${image.size} bytes)`)
+      console.log(
+        `[API] Analyzing image: ${image.name} (${image.type}, ${image.size} bytes)`
+      )
 
       try {
         elements = await analyzeComponentImage(image)
       } catch (error) {
         console.error("[API] Error analyzing image:", error)
 
-        const errorMessage = error instanceof Error ? error.message : "Failed to analyze image"
+        const errorMessage =
+          error instanceof Error ? error.message : "Failed to analyze image"
 
         // Check if it's an OpenAI API error
         if (errorMessage.includes("OpenAI API error")) {
@@ -124,9 +144,16 @@ export async function POST(request: NextRequest) {
 
       const { description } = body
 
-      if (!description || typeof description !== "string" || description.trim().length === 0) {
+      if (
+        !description ||
+        typeof description !== "string" ||
+        description.trim().length === 0
+      ) {
         return NextResponse.json(
-          { error: "Missing or invalid 'description' field. Please provide a non-empty text description." },
+          {
+            error:
+              "Missing or invalid 'description' field. Please provide a non-empty text description.",
+          },
           { status: 400 }
         )
       }
@@ -134,20 +161,27 @@ export async function POST(request: NextRequest) {
       // Validate description length (max 2000 characters)
       if (description.length > 2000) {
         return NextResponse.json(
-          { error: `Description too long: ${description.length} characters. Maximum length: 2000 characters.` },
+          {
+            error: `Description too long: ${description.length} characters. Maximum length: 2000 characters.`,
+          },
           { status: 400 }
         )
       }
 
       inputType = "description"
-      console.log(`[API] Analyzing description: "${description.slice(0, 100)}..."`)
+      console.log(
+        `[API] Analyzing description: "${description.slice(0, 100)}..."`
+      )
 
       try {
         elements = await analyzeComponentDescription(description)
       } catch (error) {
         console.error("[API] Error analyzing description:", error)
 
-        const errorMessage = error instanceof Error ? error.message : "Failed to analyze description"
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : "Failed to analyze description"
 
         // Check if it's an OpenAI API error
         if (errorMessage.includes("OpenAI API error")) {
@@ -167,7 +201,8 @@ export async function POST(request: NextRequest) {
     else {
       return NextResponse.json(
         {
-          error: "Unsupported Content-Type. Use 'multipart/form-data' for image upload or 'application/json' for text description."
+          error:
+            "Unsupported Content-Type. Use 'multipart/form-data' for image upload or 'application/json' for text description.",
         },
         { status: 400 }
       )
@@ -188,12 +223,12 @@ export async function POST(request: NextRequest) {
         confidence,
       },
     })
-
   } catch (error) {
     // Catch-all error handler for unexpected errors
     console.error("[API] Unexpected error in analyzer route:", error)
 
-    const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred"
+    const errorMessage =
+      error instanceof Error ? error.message : "An unexpected error occurred"
 
     return NextResponse.json(
       { error: `Internal server error: ${errorMessage}` },
@@ -205,7 +240,10 @@ export async function POST(request: NextRequest) {
 /**
  * Generates a human-readable summary of detected elements
  */
-function generateSummary(elements: ComponentElement[], inputType: "image" | "description"): string {
+function generateSummary(
+  elements: ComponentElement[],
+  inputType: "image" | "description"
+): string {
   if (elements.length === 0) {
     return inputType === "image"
       ? "No UI elements detected in the image"
@@ -214,7 +252,7 @@ function generateSummary(elements: ComponentElement[], inputType: "image" | "des
 
   // Count element types
   const elementCounts = new Map<string, number>()
-  elements.forEach(element => {
+  elements.forEach((element) => {
     elementCounts.set(element, (elementCounts.get(element) || 0) + 1)
   })
 
@@ -227,7 +265,8 @@ function generateSummary(elements: ComponentElement[], inputType: "image" | "des
   })
 
   // Create summary
-  const componentType = inputType === "image" ? "Component" : "Component description"
+  const componentType =
+    inputType === "image" ? "Component" : "Component description"
 
   if (parts.length === 1) {
     return `${componentType} with ${parts[0]}`

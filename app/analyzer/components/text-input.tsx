@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { Button } from "@/components/ui/button"
+
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 
 interface TextInputProps {
   onAnalyze: (description: string) => void
@@ -44,7 +45,10 @@ export function TextInput({ onAnalyze, isLoading = false }: TextInputProps) {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
-        <label htmlFor="component-description" className="block text-sm font-medium">
+        <label
+          htmlFor="component-description"
+          className="block text-sm font-medium"
+        >
           Describe your component
         </label>
         <textarea
@@ -60,7 +64,7 @@ export function TextInput({ onAnalyze, isLoading = false }: TextInputProps) {
             "flex w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30",
             "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
             "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
-            "resize-y min-h-[150px]"
+            "min-h-[150px] resize-y"
           )}
           aria-describedby="character-count"
           aria-invalid={isOverLimit}
@@ -70,12 +74,14 @@ export function TextInput({ onAnalyze, isLoading = false }: TextInputProps) {
           className={cn(
             "flex items-center justify-between text-xs",
             isOverLimit && "text-destructive",
-            isNearLimit && !isOverLimit && "text-orange-600 dark:text-orange-500"
+            isNearLimit &&
+              !isOverLimit &&
+              "text-orange-600 dark:text-orange-500"
           )}
         >
           <span className="text-muted-foreground">
             Tip: Press{" "}
-            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+            <kbd className="pointer-events-none inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100 select-none">
               <span className="text-xs">⌘</span>Enter
             </kbd>{" "}
             to analyze
@@ -129,7 +135,8 @@ export function TextInput({ onAnalyze, isLoading = false }: TextInputProps) {
 
       {isOverLimit && (
         <p className="text-sm text-destructive" role="alert">
-          Description exceeds maximum length of {maxLength} characters. Please shorten your description.
+          Description exceeds maximum length of {maxLength} characters. Please
+          shorten your description.
         </p>
       )}
     </div>

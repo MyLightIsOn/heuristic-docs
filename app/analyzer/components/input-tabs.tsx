@@ -1,12 +1,14 @@
 "use client"
 
 import { useState } from "react"
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+
 import type {
   AnalysisInput,
-  InputMethod,
   ComponentElement,
+  InputMethod,
 } from "@/lib/types/analyzer"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+
 import { ElementPicker } from "./element-picker"
 import { ImageUploader } from "./image-uploader"
 import { TextInput } from "./text-input"
@@ -41,7 +43,10 @@ export function InputTabs({ onAnalyze, isLoading }: InputTabsProps) {
   }
 
   return (
-    <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as InputMethod)}>
+    <Tabs
+      value={activeTab}
+      onValueChange={(value) => setActiveTab(value as InputMethod)}
+    >
       <TabsList>
         <TabsTrigger value="elements">Pick Elements</TabsTrigger>
         <TabsTrigger value="image">Upload Image</TabsTrigger>
@@ -52,7 +57,10 @@ export function InputTabs({ onAnalyze, isLoading }: InputTabsProps) {
       </TabsList>
 
       <TabsContent value="elements">
-        <ElementPicker onAnalyze={handleElementsAnalyze} isLoading={isLoading} />
+        <ElementPicker
+          onAnalyze={handleElementsAnalyze}
+          isLoading={isLoading}
+        />
       </TabsContent>
 
       <TabsContent value="image">
@@ -66,7 +74,9 @@ export function InputTabs({ onAnalyze, isLoading }: InputTabsProps) {
       <TabsContent value="figma">
         <div className="flex min-h-[400px] items-center justify-center rounded-lg border border-dashed border-muted-foreground/25 bg-muted/50 p-12">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-foreground">Coming Soon</h3>
+            <h3 className="text-lg font-semibold text-foreground">
+              Coming Soon
+            </h3>
             <p className="mt-2 text-sm text-muted-foreground">
               Figma integration will be available in a future update.
             </p>

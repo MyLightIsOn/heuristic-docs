@@ -1,10 +1,11 @@
 ---
 title: Is focus order predictable, logical, and intuitive?
 keywords: ["keyboard interaction", "focus order", "tabbing"]
-owner: ["designer","developer"]
+owner: ["designer", "developer"]
 ---
 
 ### What this means
+
 When someone uses the keyboard to move through a page, typically by pressing the `Tab` key, the order in which interactive elements receive focus should make sense. Focus should follow the visual reading flow of the page. That usually means left to right and top to bottom.
 
 If the focus order jumps around unexpectedly or skips important elements, it makes the interface harder to use and understand.
@@ -12,42 +13,53 @@ If the focus order jumps around unexpectedly or skips important elements, it mak
 **ONLY** interactive elements should receive focus. Elements such as buttons, links, and form fields. Regular text should be skipped as it is not interactive.
 
 ### Why this matters
+
 Keyboard users do not experience the whole interface at once. They move through the interface one element at a time. If the focus order is unpredictable, users can get lost or miss key actions. That can result in a frustrating experience.
 
 For screen readers users, the focus order is also how content is announced. A logical, intuitive flow improves usability for these users.
 
 ### What this looks like
-<div className={'diagram-container flex-col lg:flex-row'}>
-	<figure className={'w-full lg:w-1/2'}>
-		<img src={'/images/examples/keyboard-interaction/focus-order-1.webp'} alt="Good tab order"/>
-		<figcaption>Good Tab Order</figcaption>
-	</figure>
-	<figure className={"w-full lg:w-1/2"}>
-		<img src={'/images/examples/keyboard-interaction/focus-order-2.webp'} alt="Bad tab order"/>
-		<figcaption>Bad Tab Order</figcaption>
-	</figure>
+
+<div className={"diagram-container flex-col lg:flex-row"}>
+  <figure className={"w-full lg:w-1/2"}>
+    <img
+      src={"/images/examples/keyboard-interaction/focus-order-1.webp"}
+      alt="Good tab order"
+    />
+    <figcaption>Good Tab Order</figcaption>
+  </figure>
+  <figure className={"w-full lg:w-1/2"}>
+    <img
+      src={"/images/examples/keyboard-interaction/focus-order-2.webp"}
+      alt="Bad tab order"
+    />
+    <figcaption>Bad Tab Order</figcaption>
+  </figure>
 </div>
 
 ### What this feels like
+
 - **[Example 1](/examples/keyboard-interaction/focus-order/1)** - Good tab order
 - **[Example 2](/examples/keyboard-interaction/focus-order/2)** - Bad tab order
 - **[Example 3](/examples/keyboard-interaction/focus-order/3)** - Good dialog tab order
 - **[Example 4](/examples/keyboard-interaction/focus-order/4)** - Bad dialog tab order
 
 ### What to check for
+
 - Does focus move from left to right and top to bottom in a way that matches the visual layout? (In right-to-left languages, this is reversed.)
 - Are key elements, like buttons and form fields, included in the focus order?
 - Do modals and overlays move focus into the new content when opened?
 - When those elements close, does the focus return to the element that opened it?
 
 ### What to avoid
+
 - Non-interactive elements in the focus order.
 - Elements that unexpectedly receive focus, such as hidden or offscreen items.
 - Focus moving around in unexpected directions.
 
 ### Related Standards
+
 - **[WCAG 2.2 – 2.4.3](https://www.w3.org/WAI/WCAG22/Understanding/focus-order.html)** - Focus Order
 - **[WCAG 2.2 – 2.1.1](https://www.w3.org/WAI/WCAG22/Understanding/keyboard)** - Keyboard
 - **EN 301 549 - 9.2.4.3** - Focus Order
 - **EN 301 549 - 9.1.3.2** Meaningful Sequence
-

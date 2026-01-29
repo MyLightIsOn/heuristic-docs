@@ -1,6 +1,7 @@
 // lib/analyzer/openai-client.ts
 
 import OpenAI from "openai"
+
 import type { ComponentElement } from "@/lib/types/analyzer"
 
 /**
@@ -122,11 +123,14 @@ Example response: ["text-input", "button", "link"]`,
       elements = parsed
     } else if (parsed.elements && Array.isArray(parsed.elements)) {
       elements = parsed.elements
-    } else if (parsed.componentElements && Array.isArray(parsed.componentElements)) {
+    } else if (
+      parsed.componentElements &&
+      Array.isArray(parsed.componentElements)
+    ) {
       elements = parsed.componentElements
     } else {
       // Try to find any array in the response
-      const firstArray = Object.values(parsed).find(val => Array.isArray(val))
+      const firstArray = Object.values(parsed).find((val) => Array.isArray(val))
       if (firstArray && Array.isArray(firstArray)) {
         elements = firstArray
       } else {
@@ -142,7 +146,10 @@ Example response: ["text-input", "button", "link"]`,
     // Remove duplicates
     const uniqueElements = Array.from(new Set(validElements))
 
-    console.log(`[OpenAI] Detected ${uniqueElements.length} elements:`, uniqueElements)
+    console.log(
+      `[OpenAI] Detected ${uniqueElements.length} elements:`,
+      uniqueElements
+    )
 
     if (uniqueElements.length === 0) {
       console.warn("[OpenAI] No valid elements detected in image")
@@ -153,9 +160,7 @@ Example response: ["text-input", "button", "link"]`,
     console.error("[OpenAI] Error analyzing image:", error)
 
     if (error instanceof OpenAI.APIError) {
-      throw new Error(
-        `OpenAI API error (${error.status}): ${error.message}`
-      )
+      throw new Error(`OpenAI API error (${error.status}): ${error.message}`)
     }
 
     throw error instanceof Error
@@ -183,7 +188,9 @@ export async function analyzeComponentDescription(
   description: string
 ): Promise<ComponentElement[]> {
   try {
-    console.log(`[OpenAI] Analyzing description: "${description.slice(0, 100)}..."`)
+    console.log(
+      `[OpenAI] Analyzing description: "${description.slice(0, 100)}..."`
+    )
 
     const openai = getOpenAIClient()
     const response = await openai.chat.completions.create({
@@ -225,11 +232,14 @@ Example response: {"elements": ["text-input", "button", "link"]}`,
       elements = parsed
     } else if (parsed.elements && Array.isArray(parsed.elements)) {
       elements = parsed.elements
-    } else if (parsed.componentElements && Array.isArray(parsed.componentElements)) {
+    } else if (
+      parsed.componentElements &&
+      Array.isArray(parsed.componentElements)
+    ) {
       elements = parsed.componentElements
     } else {
       // Try to find any array in the response
-      const firstArray = Object.values(parsed).find(val => Array.isArray(val))
+      const firstArray = Object.values(parsed).find((val) => Array.isArray(val))
       if (firstArray && Array.isArray(firstArray)) {
         elements = firstArray
       } else {
@@ -245,7 +255,10 @@ Example response: {"elements": ["text-input", "button", "link"]}`,
     // Remove duplicates
     const uniqueElements = Array.from(new Set(validElements))
 
-    console.log(`[OpenAI] Detected ${uniqueElements.length} elements:`, uniqueElements)
+    console.log(
+      `[OpenAI] Detected ${uniqueElements.length} elements:`,
+      uniqueElements
+    )
 
     if (uniqueElements.length === 0) {
       console.warn("[OpenAI] No valid elements detected in description")
@@ -256,9 +269,7 @@ Example response: {"elements": ["text-input", "button", "link"]}`,
     console.error("[OpenAI] Error analyzing description:", error)
 
     if (error instanceof OpenAI.APIError) {
-      throw new Error(
-        `OpenAI API error (${error.status}): ${error.message}`
-      )
+      throw new Error(`OpenAI API error (${error.status}): ${error.message}`)
     }
 
     throw error instanceof Error
@@ -273,5 +284,8 @@ Example response: {"elements": ["text-input", "button", "link"]}`,
  * @returns true if API key is set, false otherwise
  */
 export function isOpenAIConfigured(): boolean {
-  return !!process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== "your-openai-api-key-here"
+  return (
+    !!process.env.OPENAI_API_KEY &&
+    process.env.OPENAI_API_KEY !== "your-openai-api-key-here"
+  )
 }
