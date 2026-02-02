@@ -148,6 +148,55 @@ lib/types/
 **Environment Variables:**
 - `OPENAI_API_KEY` - Required for AI-powered analysis features
 
+## Testing
+
+### End-to-End Testing
+
+This project uses Playwright for E2E testing.
+
+**Run all tests:**
+```bash
+pnpm test:e2e
+```
+
+**Run specific test file:**
+```bash
+pnpm test:e2e element-picker.spec.ts
+```
+
+**Run with UI mode:**
+```bash
+pnpm test:e2e:ui
+```
+
+**Debug mode:**
+```bash
+pnpm test:e2e:debug
+```
+
+### Test Coverage
+
+E2E tests cover:
+- Element picker flow (selection, analysis, results)
+- Image upload flow (file handling, validation, analysis)
+- Text description flow (input, character count, analysis)
+- Filtering functionality (all/designer/developer)
+- Export functionality (PDF and Markdown downloads)
+- Error states (API errors, network failures, invalid inputs)
+- Responsive design (mobile, tablet, desktop viewports)
+- Accessibility (keyboard navigation, focus indicators, ARIA labels)
+
+### Test Environment
+
+Tests use `.env.test` for environment variables. For local development:
+
+```bash
+cp .env.example .env.test
+# Add your test OpenAI API key
+```
+
+**Note:** Tests may make actual API calls to OpenAI. Consider mocking in CI/CD.
+
 ## Configuration Files
 
 ### Settings
