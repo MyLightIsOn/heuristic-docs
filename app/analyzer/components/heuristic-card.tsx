@@ -8,7 +8,10 @@ interface HeuristicCardProps {
 
 export function HeuristicCard({ heuristic }: HeuristicCardProps) {
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900">
+    <div
+      data-testid="heuristic-card"
+      className="group relative flex h-full flex-col overflow-hidden rounded-lg border bg-white shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg dark:border-neutral-800 dark:bg-neutral-900"
+    >
       <div className="flex flex-1 flex-col p-4">
         {/* Category Badge */}
         <div className="mb-2">
