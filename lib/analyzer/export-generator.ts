@@ -1,3 +1,38 @@
+/**
+ * Export Generator
+ *
+ * This module generates downloadable checklists from analyzer results.
+ * It supports two export formats: Markdown and PDF.
+ *
+ * Key responsibilities:
+ * - Generate Markdown checklists with GitHub-flavored formatting
+ * - Generate PDF checklists with professional layout and styling
+ * - Group heuristics by category in both formats
+ * - Include metadata (timestamp, component summary, links)
+ * - Handle pagination and page breaks for PDF
+ *
+ * Export Format Decisions:
+ *
+ * Markdown:
+ * - Uses GitHub-flavored Markdown with task list checkboxes (- [ ])
+ * - Includes clickable links to full heuristic guides
+ * - Plain text format for maximum compatibility and editability
+ * - Can be used in GitHub issues, project management tools, or documentation
+ *
+ * PDF:
+ * - Professional A4 portrait layout optimized for printing
+ * - Uses Helvetica font (universally available, clean, readable)
+ * - Includes checkboxes (☐) for offline tracking
+ * - Clickable hyperlinks to full guides (for digital use)
+ * - Automatic page breaks to avoid splitting content
+ * - 20mm margins for comfortable reading and printing
+ *
+ * Filename Format:
+ * - Markdown: accessibility-checklist-YYYY-MM-DD.md
+ * - PDF: accessibility-checklist-YYYY-MM-DD.pdf
+ * - Date format ensures chronological sorting and version tracking
+ */
+
 import { url } from "@/settings/main"
 import { jsPDF } from "jspdf"
 
@@ -42,16 +77,18 @@ import type { AnalysisResult } from "@/lib/types/analyzer"
 export function generateMarkdownChecklist(result: AnalysisResult): string {
   const { detected, heuristics } = result
 
-  // Format timestamp as YYYY-MM-DD
+  // Format timestamp as YYYY-MM-DD for consistent date display
+  // ISO format ensures unambiguous date representation
   const today = new Date()
   const timestamp = today.toISOString().split("T")[0]
 
-  // Start building the Markdown document
+  // Build Markdown document with clear structure
   let markdown = "# Accessibility Heuristics Checklist\n\n"
   markdown += `Generated: ${timestamp}\n`
   markdown += `Component: ${detected.summary}\n\n`
 
-  // Group heuristics by category
+  // Group heuristics by category for organized display
+  // Using Map preserves insertion order (important for consistent output)
   const categorizedHeuristics = new Map<string, typeof heuristics>()
 
   for (const heuristic of heuristics) {
@@ -62,7 +99,8 @@ export function generateMarkdownChecklist(result: AnalysisResult): string {
     categorizedHeuristics.get(categorySlug)!.push(heuristic)
   }
 
-  // Convert category slugs to display names
+  // Convert category slugs to human-readable display names
+  // This mapping maintains consistency with the main site navigation
   const categoryNames: Record<string, string> = {
     "keyboard-interaction": "Keyboard Interaction",
     "meaningful-content": "Meaningful Content",
@@ -72,12 +110,14 @@ export function generateMarkdownChecklist(result: AnalysisResult): string {
     "screen-reader-support": "Screen Reader Support",
   }
 
-  // Add each category section
+  // Add each category section with its heuristics
   for (const [categorySlug, categoryHeuristics] of categorizedHeuristics) {
     const categoryName = categoryNames[categorySlug] || categorySlug
     markdown += `## ${categoryName}\n\n`
 
-    // Add each heuristic as a checklist item
+    // Add each heuristic as a GitHub-flavored Markdown task list item
+    // Format: - [ ] **Title** - [View Guide](url)
+    // The checkbox syntax (- [ ]) is recognized by GitHub, GitLab, and many markdown renderers
     for (const heuristic of categoryHeuristics) {
       const heuristicUrl = `${url}/docs${heuristic.slug}`
       markdown += `- [ ] **${heuristic.title}** - [View Guide](${heuristicUrl})\n`
@@ -117,20 +157,38 @@ export async function generatePDFChecklist(
 ): Promise<Blob> {
   const { detected, heuristics } = result
 
-  // Create new PDF document (A4 size, portrait orientation)
+  // Create new PDF document with standard A4 portrait format
+  // A4 (210mm × 297mm) is the international standard for documents
+  // Portrait orientation is optimal for checklist readability
   const doc = new jsPDF({
     orientation: "portrait",
     unit: "mm",
     format: "a4",
   })
 
+  // Calculate page dimensions and margins
   const pageWidth = doc.internal.pageSize.getWidth()
   const pageHeight = doc.internal.pageSize.getHeight()
+  // 20mm margins provide comfortable reading and printing margins
   const margin = 20
   const contentWidth = pageWidth - margin * 2
+  // Track vertical position for content placement
   let currentY = margin
 
-  // Helper function to check if we need a new page and add text
+  /**
+   * Helper function to add text with automatic pagination.
+   *
+   * Handles:
+   * - Text wrapping to fit within page width
+   * - Automatic page breaks when content exceeds page height
+   * - Font styling and color customization
+   * - Vertical spacing after text
+   *
+   * @param text - Text content to add
+   * @param fontSize - Font size in points
+   * @param fontStyle - Font weight (normal or bold)
+   * @param color - RGB color array [r, g, b] where values are 0-255
+   */
   const addText = (
     text: string,
     fontSize: number,
@@ -138,45 +196,69 @@ export async function generatePDFChecklist(
     color: [number, number, number] = [0, 0, 0]
   ) => {
     doc.setFontSize(fontSize)
+    // Helvetica is used for universal compatibility and clean readability
     doc.setFont("helvetica", fontStyle)
     doc.setTextColor(color[0], color[1], color[2])
 
+    // Split text into lines that fit within content width
+    // This handles text wrapping automatically
     const lines = doc.splitTextToSize(text, contentWidth)
+    // Line height is proportional to font size (0.5 factor provides comfortable spacing)
     const lineHeight = fontSize * 0.5
 
-    // Check if we need a new page
+    // Check if content fits on current page, add new page if needed
+    // This prevents text from being cut off at page boundaries
     if (currentY + lines.length * lineHeight > pageHeight - margin) {
       doc.addPage()
       currentY = margin
     }
 
     doc.text(lines, margin, currentY)
+    // Advance vertical position: line height × number of lines + 3mm spacing
     currentY += lines.length * lineHeight + 3
   }
 
-  // Helper function to add a checkbox item with optional link
+  /**
+   * Helper function to add a checkbox item with optional hyperlink.
+   *
+   * Creates a checklist item with:
+   * - A 4mm checkbox square for manual checking
+   * - Wrapped text label
+   * - Optional clickable arrow link (→) to full guide
+   *
+   * Design decisions:
+   * - 4mm checkbox is large enough to check by hand when printed
+   * - 2mm padding between checkbox and text prevents crowding
+   * - Text wraps if longer than available width
+   * - Arrow indicator (→) shows clickable links without cluttering layout
+   * - Blue color (#0066CC) for links follows web convention
+   *
+   * @param text - Heuristic title text
+   * @param link - Optional URL to full heuristic guide
+   */
   const addCheckboxItem = (text: string, link?: string) => {
-    const checkboxSize = 4
-    const checkboxPadding = 2
-    const fontSize = 11
+    const checkboxSize = 4 // 4mm square - printable size
+    const checkboxPadding = 2 // 2mm breathing room
+    const fontSize = 11 // 11pt for readable body text
     const lineHeight = fontSize * 0.5
 
-    // Check if we need a new page
+    // Check if item fits on current page
     if (currentY + lineHeight + 5 > pageHeight - margin) {
       doc.addPage()
       currentY = margin
     }
 
-    // Draw checkbox (☐)
-    doc.setDrawColor(100, 100, 100)
-    doc.setLineWidth(0.3)
+    // Draw checkbox square using jsPDF rectangle function
+    doc.setDrawColor(100, 100, 100) // Medium gray for subtle outline
+    doc.setLineWidth(0.3) // Thin line for clean appearance
     doc.rect(margin, currentY - checkboxSize + 1, checkboxSize, checkboxSize)
 
     // Add text next to checkbox
     doc.setFontSize(fontSize)
     doc.setFont("helvetica", "normal")
-    doc.setTextColor(0, 0, 0)
+    doc.setTextColor(0, 0, 0) // Black text for maximum readability
 
+    // Calculate text position accounting for checkbox and padding
     const textX = margin + checkboxSize + checkboxPadding + 2
     const textLines = doc.splitTextToSize(
       text,
@@ -186,34 +268,37 @@ export async function generatePDFChecklist(
     doc.text(textLines, textX, currentY)
 
     // Add clickable link indicator if provided
+    // The arrow (→) is a visual cue that the item is clickable
     if (link) {
       const textWidth = doc.getTextWidth(textLines[0])
-      doc.setTextColor(0, 102, 204) // Blue color for link
+      doc.setTextColor(0, 102, 204) // Blue color (#0066CC) signals clickable link
       doc.textWithLink(" →", textX + textWidth + 2, currentY, {
         url: link,
       })
     }
 
+    // Advance vertical position for next item
     currentY += textLines.length * lineHeight + 4
   }
 
-  // Format timestamp
+  // Format timestamp for header
   const today = new Date()
   const timestamp = today.toLocaleDateString()
 
-  // Title
+  // Document title - 20pt bold for clear hierarchy
   addText("Accessibility Heuristics Checklist", 20, "bold")
   currentY += 2
 
-  // Date
+  // Generation date in smaller gray text
   addText(`Generated on ${timestamp}`, 10, "normal", [100, 100, 100])
   currentY += 5
 
-  // Analysis Summary
+  // Analysis Summary section
   addText("Analysis Summary", 14, "bold")
   addText(detected.summary, 11, "normal")
 
-  // Confidence score (if available)
+  // Confidence score (if available from AI analysis)
+  // Currently not provided by element picker, but included for future enhancement
   if (detected.confidence !== undefined) {
     addText(
       `Confidence: ${Math.round(detected.confidence * 100)}%`,
@@ -223,9 +308,11 @@ export async function generatePDFChecklist(
     )
   }
 
-  // Detected Elements
+  // List detected UI elements
   if (detected.elements.length > 0) {
     addText("Detected Elements:", 11, "bold")
+    // Convert kebab-case to human-readable format
+    // e.g., "text-input" → "text input"
     const elementsText = detected.elements
       .map((el) => el.replace(/-/g, " "))
       .join(", ")
@@ -234,13 +321,15 @@ export async function generatePDFChecklist(
 
   currentY += 5
 
-  // Separator line
+  // Separator line between header and content
+  // Light gray line provides visual separation without being distracting
   doc.setDrawColor(200, 200, 200)
   doc.setLineWidth(0.5)
   doc.line(margin, currentY, pageWidth - margin, currentY)
   currentY += 8
 
-  // Group heuristics by category
+  // Group heuristics by category for organized presentation
+  // Using Map preserves insertion order (categories are already sorted by matchHeuristics)
   const categorizedHeuristics = new Map<string, typeof heuristics>()
 
   for (const heuristic of heuristics) {
@@ -251,7 +340,8 @@ export async function generatePDFChecklist(
     categorizedHeuristics.get(categorySlug)!.push(heuristic)
   }
 
-  // Convert category slugs to display names
+  // Convert category slugs to human-readable display names
+  // This mapping must match the site's category structure for consistency
   const categoryNames: Record<string, string> = {
     "keyboard-interaction": "Keyboard Interaction",
     "meaningful-content": "Meaningful Content",
@@ -261,33 +351,39 @@ export async function generatePDFChecklist(
     "screen-reader-support": "Screen Reader Support",
   }
 
-  // Add each category section with checklist items
+  // Add each category section with its heuristics
   for (const [categorySlug, categoryHeuristics] of categorizedHeuristics) {
     const categoryName = categoryNames[categorySlug] || categorySlug
 
+    // Category heading - 14pt bold for clear section delineation
     addText(categoryName, 14, "bold")
     currentY += 2
 
-    // Add each heuristic as a checkbox item
+    // Add each heuristic as a checkbox item with clickable link
     for (const heuristic of categoryHeuristics) {
       const heuristicUrl = `${url}/docs${heuristic.slug}`
       addCheckboxItem(heuristic.title, heuristicUrl)
     }
 
+    // Add spacing between category sections
     currentY += 3
   }
 
-  // Footer
+  // Add footer with attribution and link to analyzer
+  // If content filled the page, add a new page for the footer
   if (currentY > pageHeight - margin - 20) {
     doc.addPage()
     currentY = pageHeight - margin - 10
   } else {
+    // Otherwise, position footer at bottom of current page
     currentY = pageHeight - margin - 10
   }
 
+  // Small gray text for unobtrusive footer
   doc.setFontSize(8)
   doc.setFont("helvetica", "normal")
-  doc.setTextColor(150, 150, 150)
+  doc.setTextColor(150, 150, 150) // Light gray
+  // Add clickable link to analyzer tool for reference
   doc.textWithLink(
     "Generated with Accessibility Heuristics Guide",
     margin,
@@ -295,7 +391,8 @@ export async function generatePDFChecklist(
     { url: `${url}/analyzer` }
   )
 
-  // Convert to Blob
+  // Convert jsPDF document to Blob for download
+  // Blob format allows the file to be saved via browser download APIs
   const pdfBlob = doc.output("blob")
   return pdfBlob
 }
