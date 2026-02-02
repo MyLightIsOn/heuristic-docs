@@ -42,3 +42,9 @@ next-env.d.ts
 /docs/
 /ADAPTATION_PLAN.md
 /CLAUDE.md
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+tests/downloads/
